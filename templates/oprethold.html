@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Opret Hold{% endblock %}
+{% block content %}
+<form action="#" method="POST">
+    <input type="text" name="holdnavn" placeholder="Indtast Holdnavn" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Indtast Holdnavn'" value="" /> 
+    <input type="text" name="ejer" placeholder="Ejeren af hold" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ejeren af hold'" value="" />
+    </br>
+    {% for field in ["herre1", "herre2", "herre3", "herre4", "herre5", "herre6", "dame1", "dame2", "dame3", "dame4", "Holdkaptajn"] %}
+        {% if field == "dame1" %}
+            <br>
+        {% endif %}
+        {% if field == "Holdkaptajn"%}
+            <br> 
+        {%endif%}
+        <input type="text" name="{{ field }}" placeholder="Indtast {{ field }}" list="{{ field }}List" />
+        <datalist id="{{ field }}List">
+        
+        {% for suggestion in suggestions_herre %}
+                <option value="{{ suggestion }}"></option>
+        {% endfor %}
+        
+    </datalist>
+    {% endfor %}
+    <br>
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
+
